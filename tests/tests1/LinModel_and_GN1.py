@@ -2,6 +2,12 @@
 # @brief Linear Model and Gaussian Noise Example 
 # 
 
+import numpy as np
+from pymc3 import *
+from sklearn.metrics import mean_absolute_error
+import matplotlib.pyplot as plt
+%matplotlib inline
+
 class LinModel: 
     q = 0 # Default Value 
     m = 1 # Default Value 
@@ -40,6 +46,13 @@ db.y.noisy3 = db.y.true + Noise.get_Normal(0.8, db.size) # Get Actual Noisy Obse
 
 print(db.y.noisy1)
 print(db.y.noisy3)
+
+
+# Note: We expected that the smaller the noise the smaller the MAE hence the better the model wrt GT appunto 
+print(mean_absolute_error(db.y.true,db.y.noisy1)) # < Print GT vs Noise1 Metric 
+print(mean_absolute_error(db.y.true,db.y.noisy3)) # < Print GT vs Noise3 Metric 
+
+
 
 # add noise
 #model1 = true_regression_line + np.random.normal(scale=.5, size=size) #Noisy
