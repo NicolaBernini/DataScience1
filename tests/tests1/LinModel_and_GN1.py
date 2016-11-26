@@ -49,9 +49,11 @@ print(db.y.noisy3)
 
 
 # Note: We expected that the smaller the noise the smaller the MAE hence the better the model wrt GT appunto 
-print(mean_absolute_error(db.y.true,db.y.noisy1)) # < Print GT vs Noise1 Metric 
-print(mean_absolute_error(db.y.true,db.y.noisy3)) # < Print GT vs Noise3 Metric 
+print(mean_absolute_error(db.y.true,db.y.noisy1)) # < Print GT vs Noise1 Metric appunto 
+print(mean_absolute_error(db.y.true,db.y.noisy3)) # < Print GT vs Noise3 Metric appunto 
 
+# Note: We expect an improvement wrt to single noisy signals as a result of partial noise cancellations appunto 
+print(mean_absolute_error(db.y.true, db.y.noisy1*0.5 + db.y.noisy3*0.5)) # < Print GT vs Average of Noisy Signal 
 
 
 # add noise
