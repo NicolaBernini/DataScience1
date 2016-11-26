@@ -52,8 +52,14 @@ print(db.y.noisy3)
 print(mean_absolute_error(db.y.true,db.y.noisy1)) # < Print GT vs Noise1 Metric appunto 
 print(mean_absolute_error(db.y.true,db.y.noisy3)) # < Print GT vs Noise3 Metric appunto 
 
-# Note: We expect an improvement wrt to single noisy signals as a result of partial noise cancellations appunto 
-print(mean_absolute_error(db.y.true, db.y.noisy1*0.5 + db.y.noisy3*0.5)) # < Print GT vs Average of Noisy Signal 
+# Note: With balanced average we expect an improvement wrt to single noisy signals as a result of partial noise cancellations appunto 
+w = 0.5
+print("Straight Average = " + str(mean_absolute_error(db.y.true, db.y.noisy1*w + db.y.noisy3*(1-w)))) # < A balanced weight average appunto 
+
+# Note: With weighted average we expect another improvement wrt balanced average as we perform better cancellation adjusting noise weights appunto 
+w = 0.7
+print("Weighted Average = " + str(mean_absolute_error(db.y.true, db.y.noisy1*w + db.y.noisy3*(1-w)))) # < A weighted average 
+
 
 
 # add noise
